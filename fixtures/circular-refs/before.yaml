@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: Graph Service
+  version: 1.0.0
+paths:
+  /graph:
+    get:
+      responses:
+        '200':
+          description: 图节点
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+components:
+  schemas:
+    Node:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        child:
+          $ref: '#/components/schemas/Edge'
+    Edge:
+      type: object
+      properties:
+        weight:
+          type: number
+        target:
+          $ref: '#/components/schemas/Node'

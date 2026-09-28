@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Account Service
+  version: 1.0.0
+paths:
+  /accounts/me:
+    get:
+      responses:
+        '200':
+          description: 当前账户
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+components:
+  schemas:
+    BaseEntity:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+    Account:
+      allOf:
+        - $ref: '#/components/schemas/BaseEntity'
+        - type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+            email:
+              type: string

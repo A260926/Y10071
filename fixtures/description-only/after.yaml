@@ -1,0 +1,32 @@
+{
+  "openapi": "3.0.3",
+  "info": { "version": "1.0.0", "title": "Order Service", "description": "订单服务（更新了简介，但结构未变）" },
+  "paths": {
+    "/orders/{orderId}": {
+      "get": {
+        "description": "根据订单号查询订单详情，支持 30 天内订单。",
+        "summary": "查询订单（新）",
+        "parameters": [
+          { "in": "path", "schema": { "type": "string" }, "required": true, "name": "orderId", "description": "订单号，字符串" }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "note": { "type": "string", "description": "用户备注" },
+                    "orderId": { "type": "string", "description": "订单唯一编号（不变）" }
+                  },
+                  "required": ["orderId"]
+                }
+              }
+            },
+            "description": "订单详情响应"
+          }
+        }
+      }
+    }
+  }
+}

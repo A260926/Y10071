@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: Order Service
+  version: 1.0.0
+  description: 订单服务
+paths:
+  /orders/{orderId}:
+    get:
+      summary: 查询订单
+      description: 根据订单号查询订单详情
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: 订单号
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 订单详情
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - orderId
+                properties:
+                  orderId:
+                    type: string
+                    description: 订单唯一编号
+                  note:
+                    type: string
+                    description: 备注

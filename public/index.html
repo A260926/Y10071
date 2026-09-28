@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>契约变更审议台</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>契约变更审议台</h1>
+      <p class="subtitle">审议两份 OpenAPI 文档之间真正影响调用方的变化，留下可追溯决议。</p>
+    </header>
+
+    <section id="ticket-section" class="panel">
+      <h2>1. 审议单</h2>
+      <div class="row">
+        <input id="ticket-title" type="text" placeholder="审议单标题，例如 用户服务 v1→v2" />
+        <button id="create-ticket" type="button">创建审议单</button>
+        <select id="ticket-select"></select>
+      </div>
+    </section>
+
+    <section id="upload-section" class="panel" hidden>
+      <h2>2. 上传文档修订</h2>
+      <div class="row">
+        <label>
+          内置示例：
+          <select id="fixture-select"></select>
+        </label>
+        <button id="load-fixture" type="button">加载示例</button>
+      </div>
+      <div class="docs-grid">
+        <div>
+          <h3>before <input type="file" id="before-file" accept=".json,.yaml,.yml" /></h3>
+          <textarea id="before-text" spellcheck="false" placeholder="粘贴 JSON 或 YAML，或选择文件"></textarea>
+        </div>
+        <div>
+          <h3>after <input type="file" id="after-file" accept=".json,.yaml,.yml" /></h3>
+          <textarea id="after-text" spellcheck="false" placeholder="粘贴 JSON 或 YAML，或选择文件"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <button id="submit-revision" type="button" class="primary">生成差异 / 新建修订</button>
+        <span id="revision-status"></span>
+      </div>
+      <pre id="upload-error" class="error-box" hidden></pre>
+    </section>
+
+    <section id="diffs-section" class="panel" hidden>
+      <div class="section-head">
+        <h2>3. 逐条审议差异</h2>
+        <div class="filters" id="category-filters"></div>
+      </div>
+      <div id="revision-meta"></div>
+      <div id="diff-list"></div>
+    </section>
+
+    <section id="events-section" class="panel" hidden>
+      <h2>4. 决议事件流（顺序递增）</h2>
+      <ol id="event-list"></ol>
+    </section>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

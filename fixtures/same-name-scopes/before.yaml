@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Thing Service
+  version: 1.0.0
+paths:
+  /a/things:
+    get:
+      responses:
+        '200':
+          description: A 域的 thing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+  /b/things:
+    get:
+      responses:
+        '200':
+          description: B 域的 thing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
