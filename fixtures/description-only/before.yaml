@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: Echo
+  version: 1.0.0
+paths:
+  /echo:
+    get:
+      summary: 回声接口
+      parameters:
+        - name: message
+          in: query
+          required: true
+          description: 要回声的消息
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 返回消息
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [message]
+                properties:
+                  message:
+                    type: string
+                    description: 原样返回

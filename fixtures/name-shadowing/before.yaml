@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Tickets
+  version: 1.0.0
+paths:
+  /tickets/{ticketId}:
+    get:
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+components:
+  schemas:
+    Ticket:
+      type: object
+      required: [id, status, creator]
+      properties:
+        id: { type: string }
+        status:
+          type: string
+          enum: [open, in_progress, resolved, closed]
+        creator:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      required: [id, status]
+      properties:
+        id: { type: string }
+        status:
+          type: string
+          enum: [active, suspended, deleted]

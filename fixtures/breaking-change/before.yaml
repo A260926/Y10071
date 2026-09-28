@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Pet Store
+  version: 1.4.0
+paths:
+  /pets/{petId}:
+    get:
+      summary: 获取宠物
+      operationId: getPet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '410':
+          description: 已下线
+    post:
+      summary: 更新宠物
+      operationId: updatePet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '200':
+          description: 成功
+components:
+  schemas:
+    Pet:
+      type: object
+      required: [id, name, status]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+          enum: [available, pending, sold]
+        nickname:
+          type: string
+          nullable: true

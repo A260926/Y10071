@@ -1,0 +1,24 @@
+openapi: 3.0.3
+info:
+  title: Orders
+  version: 1.0.0
+paths:
+  /orders/{orderId}:
+    get:
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [createdAt, id, amount]
+                properties:
+                  amount: { type: number }
+                  createdAt: { type: string, format: date-time }
+                  id: { type: string }

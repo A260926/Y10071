@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: Tree API
+  version: 1.1.0
+paths:
+  /nodes/{nodeId}:
+    get:
+      parameters:
+        - name: nodeId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+components:
+  schemas:
+    Node:
+      type: object
+      required: [id, kind, depth]
+      properties:
+        id: { type: string }
+        depth: { type: integer }
+        kind:
+          type: string
+          enum: [folder, file]
+        parent:
+          $ref: '#/components/schemas/Node'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'

@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Echo
+  version: 1.0.0
+paths:
+  /echo:
+    get:
+      parameters:
+        - name: message
+          in: query
+          schema:
+            type: string
+          required: true
+          description: 需要回声的消息内容（仅文档措辞调整）
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 原样返回的消息文本
+                required: [message]
+          description: 返回消息
